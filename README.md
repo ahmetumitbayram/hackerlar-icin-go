@@ -1,1 +1,1 @@
-# hackerlar-icin-go
+Bu kitap, güvenlik dünyasında yeteneklerinizi geliştirmek isteyen herkesi hedefliyor. Go programlama dilinin gücünü kullanarak ağ güvenliği, exploit geliştirme ve tersine mühendislik gibi konuları ele alıyor. Hem başlangıç seviyesindeki okurlar hem de daha deneyimli güvenlik uzmanları için değerli bir kaynak olmayı amaçlıyor.
